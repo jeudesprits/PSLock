@@ -1,7 +1,7 @@
 import Foundation
 
 @available(OSX 10.12, *)
-public final class PSUnfairLock {
+final public class PSUnfairLock {
   
   private var _lock = os_unfair_lock()
   
