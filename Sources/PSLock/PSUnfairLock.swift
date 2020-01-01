@@ -8,4 +8,6 @@ final public class PSUnfairLock {
   public func lock() { os_unfair_lock_lock(&_lock) }
   
   public func unlock() { os_unfair_lock_unlock(&_lock) }
+  
+  public init() { }
 }
