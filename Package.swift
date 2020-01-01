@@ -16,6 +16,6 @@ let package = Package(
     .testTarget(name: "PSLockTests", dependencies: ["PSLock"]),
   ],
   swiftLanguageVersions: [
-    .v5
+    .v5,
   ]
 )
