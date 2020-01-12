@@ -85,7 +85,7 @@ private extension PSLockTests {
     _ = group.wait(timeout: .distantFuture)
     
     
-    XCTAssert(value == dispatchBlockCount * iterationCountPerBlock)
+    XCTAssertEqual(value, dispatchBlockCount * iterationCountPerBlock)
   }
 }
 
