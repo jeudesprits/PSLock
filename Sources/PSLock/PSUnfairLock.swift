@@ -45,8 +45,8 @@ public extension PSUnfairLock {
   
   enum Predicate {
     
-    case threadOwned
-    case threadNotOwned
+    case onThreadOwner
+    case notOnThreadOwner
   }
 }
 
