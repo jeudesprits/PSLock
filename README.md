@@ -7,6 +7,9 @@
     <a href="https://twitter.com/jeudesprits">
         <img src="https://img.shields.io/badge/twitter-jeudesprits-5AA9E7.svg" alt="Twitter">
     </a>
+    <a href="https://t.me/jeudesprits">
+        <img src="https://img.shields.io/badge/telegram-jeudesprits-5AA9E7.svg" alt="Telegram">
+    </a>
 </p>
 
 <br>
