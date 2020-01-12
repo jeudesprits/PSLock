@@ -53,7 +53,7 @@ public extension PSUnfairLock {
 public extension PSUnfairLock {
   
   func precondition(condition: Predicate) {
-    if condition == .threadOwned {
+    if condition == .onThreadOwner {
       os_unfair_lock_assert_owner(_lock)
     } else {
       os_unfair_lock_assert_not_owner(_lock)
