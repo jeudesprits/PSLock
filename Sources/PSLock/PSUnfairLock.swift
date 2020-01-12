@@ -9,9 +9,7 @@ public final class PSUnfairLock {
     _lock.initialize(to: os_unfair_lock())
   }
   
-  deinit {
-    _lock.deallocate()
-  }
+  deinit { _lock.deallocate() }
 }
 
 public extension PSUnfairLock {
