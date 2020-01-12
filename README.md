@@ -2,4 +2,4 @@
 
 # PSLock
 
-A description of this package.
+Simple `os_unfair_lock` wrapper. Well tested.
