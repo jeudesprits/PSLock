@@ -10,6 +10,7 @@
 </p>
 
 <br>
+
 # PSLock
 
 Simple `os_unfair_lock` wrapper. Well tested.
