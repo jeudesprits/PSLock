@@ -89,7 +89,7 @@ private extension PSLockTests {
   }
 }
 
-extension {
+extension PSLockTests {
   
   static var allTests = [
     ("testUnfairLock", testLockUnlock),
