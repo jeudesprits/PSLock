@@ -3,13 +3,16 @@ import XCTest
 
 final class PSLockTests: XCTestCase {
   
-  private var lock: PSUnfairLock!
+  private var lock: UnfairLock!
   
+  // MARK: -
   
   override func setUp() {
     super.setUp()
-    lock = PSUnfairLock()
+    lock = UnfairLock()
   }
+  
+  // MARK: -
   
   func testLockUnlock() {
     executeLockTest { (block) in
@@ -47,15 +50,17 @@ final class PSLockTests: XCTestCase {
     self.lock.precondition(condition: .notOnThreadOwner)
   }
   
+  // MARK: -
+  
   override func tearDown() {
     lock = nil
     super.tearDown()
   }
 }
 
-private extension PSLockTests {
+extension PSLockTests {
   
-  func executeLockTest(performBlock: @escaping (_ block: () -> Void) -> Void) {
+  private func executeLockTest(performBlock: @escaping (_ block: () -> Void) -> Void) {
     let dispatchBlockCount = 16
     let iterationCountPerBlock = 100_000
     let queues: [DispatchQueue] = [

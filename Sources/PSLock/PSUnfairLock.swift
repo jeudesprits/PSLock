@@ -1,8 +1,11 @@
 import Foundation
 
-public final class PSUnfairLock {
+public final class UnfairLock {
   
-  private var _lock: UnsafeMutablePointer<os_unfair_lock>
+  @usableFromInline
+  internal private(set) var _lock: UnsafeMutablePointer<os_unfair_lock>
+  
+  // MARK: -
   
   public init() {
     _lock = .allocate(capacity: 1)
@@ -12,45 +15,51 @@ public final class PSUnfairLock {
   deinit { _lock.deallocate() }
 }
 
-public extension PSUnfairLock {
+extension UnfairLock {
   
-  func lock() { os_unfair_lock_lock(_lock) }
+  @inlinable
+  public func lock() { os_unfair_lock_lock(_lock) }
   
-  func unlock() { os_unfair_lock_unlock(_lock) }
+  @inlinable
+  public func unlock() { os_unfair_lock_unlock(_lock) }
 }
 
-public extension PSUnfairLock {
+extension UnfairLock {
   
-  func locked() -> Bool { os_unfair_lock_trylock(_lock) }
+  @inlinable
+  public func locked() -> Bool { os_unfair_lock_trylock(_lock) }
 }
 
-public extension PSUnfairLock {
+extension UnfairLock {
   
-  func trySync<R>(_ block: () throws -> R) rethrows -> R? {
+  @inlinable
+  public func trySync<R>(_ block: () throws -> R) rethrows -> R? {
     guard locked() else  { return nil }
     defer { unlock() }
     return try block()
   }
   
-  func sync<R>(_ block: () throws -> R) rethrows -> R {
+  @inlinable
+  public func sync<R>(_ block: () throws -> R) rethrows -> R {
     lock()
     defer { unlock() }
     return try block()
   }
 }
 
-public extension PSUnfairLock {
+extension UnfairLock {
   
-  enum Predicate {
+  public enum Predicate {
     
     case onThreadOwner
     case notOnThreadOwner
   }
 }
 
-public extension PSUnfairLock {
+extension UnfairLock {
   
-  func precondition(condition: Predicate) {
+  @inlinable
+  public func precondition(condition: Predicate) {
     if condition == .onThreadOwner {
       os_unfair_lock_assert_owner(_lock)
     } else {
